@@ -2250,7 +2250,7 @@
             this.binInv5.TabIndex = 10;
             this.binInv5.Text = "0";
             this.binInv5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.binInv5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.binInv5_KeyDown);
+            this.binInv5.TextChanged += new System.EventHandler(this.binInv5_TextChanged);
             // 
             // binInv4
             // 
@@ -2261,7 +2261,7 @@
             this.binInv4.TabIndex = 9;
             this.binInv4.Text = "0";
             this.binInv4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.binInv4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.binInv4_KeyDown);
+            this.binInv4.TextChanged += new System.EventHandler(this.binInv4_TextChanged);
             // 
             // binInv3
             // 
@@ -2272,7 +2272,7 @@
             this.binInv3.TabIndex = 8;
             this.binInv3.Text = "0";
             this.binInv3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.binInv3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.binInv3_KeyDown);
+            this.binInv3.TextChanged += new System.EventHandler(this.binInv3_TextChanged);
             // 
             // binInv2
             // 
@@ -2283,7 +2283,7 @@
             this.binInv2.TabIndex = 7;
             this.binInv2.Text = "0";
             this.binInv2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.binInv2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.binInv2_KeyDown);
+            this.binInv2.TextChanged += new System.EventHandler(this.binInv2_TextChanged);
             // 
             // binInv1
             // 
@@ -2294,7 +2294,7 @@
             this.binInv1.TabIndex = 6;
             this.binInv1.Text = "0";
             this.binInv1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.binInv1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.binInv1_KeyDown);
+            this.binInv1.TextChanged += new System.EventHandler(this.binInv1_TextChanged);
             // 
             // label37
             // 

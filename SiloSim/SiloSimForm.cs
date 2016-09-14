@@ -498,29 +498,69 @@ namespace SiloSim
             }
         }
 
-        private void binInv1_KeyDown(object sender, KeyEventArgs e)
+        private void binInv1_TextChanged(object sender, EventArgs e)
         {
-            PLC.binInventory[0] = int.Parse(binInv1.Text);
+            int bin1Inv = 0;
+            if (int.TryParse(binInv1.Text, out bin1Inv))
+            {
+                PLC.binInventory[0] = bin1Inv;
+            }
+            else
+            {
+                binInv1.Text = PLC.binInventory[0].ToString();
+            }
         }
 
-        private void binInv2_KeyDown(object sender, KeyEventArgs e)
+        private void binInv2_TextChanged(object sender, EventArgs e)
         {
-            PLC.binInventory[1] = int.Parse(binInv2.Text);
+            int bin2Inv = 0;
+            if(int.TryParse(binInv2.Text, out bin2Inv))
+            {
+                PLC.binInventory[1] = bin2Inv;
+            }
+            else
+            {
+                binInv2.Text = PLC.binInventory[1].ToString();
+            }
         }
 
-        private void binInv3_KeyDown(object sender, KeyEventArgs e)
+        private void binInv3_TextChanged(object sender, EventArgs e)
         {
-            PLC.binInventory[2] = int.Parse(binInv3.Text);
+            int bin3Inv = 0;
+            if (int.TryParse(binInv3.Text, out bin3Inv))
+            {
+                PLC.binInventory[2] = bin3Inv;
+            }
+            else
+            {
+                binInv3.Text = PLC.binInventory[2].ToString();
+            }
         }
 
-        private void binInv4_KeyDown(object sender, KeyEventArgs e)
+        private void binInv4_TextChanged(object sender, EventArgs e)
         {
-            PLC.binInventory[3] = int.Parse(binInv4.Text);
+            int bin4Inv = 0;
+            if (int.TryParse(binInv4.Text, out bin4Inv))
+            {
+                PLC.binInventory[3] = bin4Inv;
+            }
+            else
+            {
+                binInv4.Text = PLC.binInventory[3].ToString();
+            }
         }
 
-        private void binInv5_KeyDown(object sender, KeyEventArgs e)
+        private void binInv5_TextChanged(object sender, EventArgs e)
         {
-            PLC.binInventory[4] = int.Parse(binInv5.Text);
+            int bin5Inv = 0;
+            if (int.TryParse(binInv5.Text, out bin5Inv))
+            {
+                PLC.binInventory[4] = bin5Inv;
+            }
+            else
+            {
+                binInv5.Text = PLC.binInventory[4].ToString();
+            }
         }
 
         private void scaleTareBox_TextChanged(object sender, EventArgs e)
@@ -996,5 +1036,7 @@ namespace SiloSim
         {
             PLC.outputs[13] = false;
         }
+
+
     }
 }

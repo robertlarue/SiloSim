@@ -139,7 +139,7 @@ namespace SiloSim
                                             //2 bytes, file number = 7, type = integer(89), element = 1, subelement = 0
                                             case "0407890100":
                                                 string inputString = ConvertInputsToHex();
-                                                SendResponse(client, sts + tns + inputString);
+                                                SendResponse(client, sts + tns + inputString, dataPayload: dataPayload);
                                                 break;
 
                                             //read outputs
@@ -248,14 +248,14 @@ namespace SiloSim
         //    //byte[] buffer = StringToByteArray("1006100200014f00a16e006000001003c7b3");
         //    //client.Client.Send(buffer);
         //}
-        static void SendResponse(TcpClient client, string response, string src = "00", string dst = "01", string cmd = "4f" )
+        static void SendResponse(TcpClient client, string response, string src = "00", string dst = "01", string cmd = "4f", string dataPayload = "" )
         {
             string beginSend = "10061002";
             string data = src + dst + cmd + response;
             byte[] crcComputeBytes = StringToByteArray(data + "03");
             byte[] crcBytes = BitConverter.GetBytes(Crc16.ComputeChecksum(crcComputeBytes));
             string crc = BitConverter.ToString(crcBytes).Replace("-", "").ToLower();
-            if (cmd == "4f" && response.Length == 14 && inputs[4] == true && response.Substring(6, 2) == "10")
+            if (dataPayload == "0407890100" && response.Substring(6,2) == "10")
                 data = src + dst + cmd + response.Substring(0,6) + response.Substring(6, 2) + response.Substring(6, response.Length - 6); //weird quirk
             string sendString = beginSend + data + "1003" + crc;
             Console.WriteLine("Sent: " + sendString);
