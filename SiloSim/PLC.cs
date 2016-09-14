@@ -147,7 +147,7 @@ namespace SiloSim
                                             //14 bytes, file number = 7, type = integer(89), element = 5, subelement = 0
                                             case "0407890300":
                                                 string outputString = ConvertOutputsToHex();
-                                                SendResponse(client, sts + tns + outputString);
+                                                SendResponse(client, sts + tns + outputString, dataPayload: dataPayload);
                                                 break;
 
                                             //read inventory
@@ -155,7 +155,7 @@ namespace SiloSim
                                             //14 bytes, file number = 7, type = integer(89), element = 6, subelement = 0
                                             case "1407890600":
                                                 string inventoryString = ConvertInventoryToHex();
-                                                SendResponse(client, sts + tns + inventoryString);
+                                                SendResponse(client, sts + tns + inventoryString, dataPayload: dataPayload);
                                                 break;
 
                                             //read counters reset
@@ -255,8 +255,14 @@ namespace SiloSim
             byte[] crcComputeBytes = StringToByteArray(data + "03");
             byte[] crcBytes = BitConverter.GetBytes(Crc16.ComputeChecksum(crcComputeBytes));
             string crc = BitConverter.ToString(crcBytes).Replace("-", "").ToLower();
-            if (dataPayload == "0407890100" && response.Substring(6,2) == "10")
-                data = src + dst + cmd + response.Substring(0,6) + response.Substring(6, 2) + response.Substring(6, response.Length - 6); //weird quirk
+            if (dataPayload != "" && dataPayload.Length > 3)
+            {
+                if (dataPayload.Substring(2, 2) == "07")
+                {
+                    string modifiedResponse = response.Substring(6, response.Length - 6).Replace("10", "1010");
+                    data = src + dst + cmd + response.Substring(0, 6) + modifiedResponse; //weird quirk
+                }
+            }
             string sendString = beginSend + data + "1003" + crc;
             Console.WriteLine("Sent: " + sendString);
             byte[] buffer = StringToByteArray(sendString);
