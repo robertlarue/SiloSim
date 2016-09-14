@@ -2,6 +2,11 @@
 Simulates a PLC and a truck scale representing a single asphalt loadout lane with up to five silos. Specifically, it emulates an Allen Bradley Micrologix 1100 PLC loaded with Command Alkon's JWS Apex Loadout program and a Cardinal Scales weigh indicator. 
 ![SiloSim Screenshot](/SiloSim.png?raw=true)
 
+##Download
+The latest version can be downloaded at the [Github Releases](https://github.com/robertlarue/SiloSim/releases) page.
+
+##User Guide
+
 ##I.	Getting Started
 Before using SiloSim with JWS Apex, you must first configure the virtual Scale and PLC.
 
