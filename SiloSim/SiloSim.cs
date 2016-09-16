@@ -70,17 +70,21 @@ namespace SiloSim
         }
         static void CheckGates()
         {
-                if (PLC.outputs[0] | PLC.outputs[1] | PLC.outputs[2] | PLC.outputs[3] | PLC.outputs[4] | PLC.outputs[5] | PLC.outputs[6] | PLC.outputs[7] | PLC.outputs[8] | PLC.outputs[9])
+            if (PLC.outputs[0] | PLC.outputs[1] | PLC.outputs[2] | PLC.outputs[3] | PLC.outputs[4] | PLC.outputs[5] | PLC.outputs[6] | PLC.outputs[7] | PLC.outputs[8] | PLC.outputs[9])
+            {
+                Scale.scaleWeight = Scale.scaleWeight + Scale.fillIncrement;
+            }
+            if (hornResetEnabled)
+            {
+                if (PLC.outputs[11])
                 {
-                    Scale.scaleWeight = Scale.scaleWeight + Scale.fillIncrement;
+                    Scale.scaleWeight = Scale.tareWeight;
                 }
-                if (hornResetEnabled)
-                {
-                    if (PLC.outputs[11])
-                    {
-                        Scale.scaleWeight = Scale.tareWeight;
-                    }
-                }
+            }
+            if (PLC.outputs[11])
+            {
+                form.SoundHorn();
+            }
         }
         static void CheckMotion()
         {

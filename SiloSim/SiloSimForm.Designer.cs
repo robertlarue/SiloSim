@@ -177,6 +177,7 @@
             this.scaleGrossBtn = new System.Windows.Forms.Button();
             this.scaleTareBtn = new System.Windows.Forms.Button();
             this.scalePanel = new System.Windows.Forms.Panel();
+            this.scaleText = new SiloSim.DisabledRichTextBox();
             this.loadoutBox = new System.Windows.Forms.GroupBox();
             this.label39 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
@@ -232,7 +233,6 @@
             this.scaleClientLight = new System.Windows.Forms.Panel();
             this.plcClientLight = new System.Windows.Forms.Panel();
             this.clientsList = new System.Windows.Forms.ToolTip(this.components);
-            this.scaleText = new SiloSim.DisabledRichTextBox();
             this.outputsBox.SuspendLayout();
             this.output13.SuspendLayout();
             this.output12.SuspendLayout();
@@ -1952,6 +1952,19 @@
             this.scalePanel.Size = new System.Drawing.Size(200, 44);
             this.scalePanel.TabIndex = 1;
             // 
+            // scaleText
+            // 
+            this.scaleText.BackColor = System.Drawing.Color.Black;
+            this.scaleText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.scaleText.Font = new System.Drawing.Font("Lucida Console", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scaleText.ForeColor = System.Drawing.Color.Chartreuse;
+            this.scaleText.Location = new System.Drawing.Point(2, 6);
+            this.scaleText.Name = "scaleText";
+            this.scaleText.Size = new System.Drawing.Size(195, 35);
+            this.scaleText.TabIndex = 0;
+            this.scaleText.TabStop = false;
+            this.scaleText.Text = "   24000";
+            // 
             // loadoutBox
             // 
             this.loadoutBox.Controls.Add(this.label39);
@@ -2579,19 +2592,6 @@
             this.plcClientLight.Size = new System.Drawing.Size(15, 15);
             this.plcClientLight.TabIndex = 10;
             this.plcClientLight.MouseEnter += new System.EventHandler(this.plcClientLight_MouseEnter);
-            // 
-            // scaleText
-            // 
-            this.scaleText.BackColor = System.Drawing.Color.Black;
-            this.scaleText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.scaleText.Font = new System.Drawing.Font("Lucida Console", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scaleText.ForeColor = System.Drawing.Color.Chartreuse;
-            this.scaleText.Location = new System.Drawing.Point(2, 6);
-            this.scaleText.Name = "scaleText";
-            this.scaleText.Size = new System.Drawing.Size(195, 35);
-            this.scaleText.TabIndex = 0;
-            this.scaleText.TabStop = false;
-            this.scaleText.Text = "   24000";
             // 
             // SiloSimForm
             // 

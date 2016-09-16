@@ -4,6 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,11 @@ namespace SiloSim
         delegate void SetBinInventoryCallback(int[] binInventory);
         delegate void SetScaleMotionCallback(bool scaleInMotion);
         delegate void SetClientLightsCallback(bool scaleClientsConnected, bool plcClientsConnected);
+        delegate void SoundHornCallback();
 
         private static int fillRate = 300;
         public static string label = "Silo Loadout Simulator";
+        public static bool hornSounding = false;
         public Thread weighbridge;
 
         public SiloSimForm()
@@ -215,6 +218,38 @@ namespace SiloSim
                     this.plcClientLight.BackColor = Color.Silver;
                 }
             }
+        }
+        public void SoundHorn()
+        {
+            if (this.outputLight11.InvokeRequired)
+            {
+                SoundHornCallback d = new SoundHornCallback(SoundHorn);
+                try
+                {
+                    this.Invoke(d);
+                }
+                catch
+                {
+                    Application.Exit();
+                }
+            }
+            else
+            {
+                if (!hornSounding)
+                {
+                    hornSounding = true;
+                    Stream siloTruckHorn = Properties.Resources.silotruckhorn;
+                    System.Media.SoundPlayer hornPlayer = new System.Media.SoundPlayer(siloTruckHorn);
+                    hornPlayer.Play();
+                    Thread hornEnabler = new Thread(HornEnableThread);
+                    hornEnabler.Start();
+                }
+            }
+        }
+        private void HornEnableThread()
+        {
+            Thread.Sleep(4000);
+            hornSounding = false;
         }
         void WeighBridgeThread()
         {
