@@ -259,7 +259,7 @@ namespace SiloSim
             {
                 if (dataPayload.Substring(2, 2) == "07")
                 {
-                    string modifiedResponse = response.Substring(6, response.Length - 6).Replace("10", "1010");
+                    string modifiedResponse = QuirkFix(response.Substring(6, response.Length - 6));
                     data = src + dst + cmd + response.Substring(0, 6) + modifiedResponse; //weird quirk
                 }
             }
@@ -305,6 +305,25 @@ namespace SiloSim
             string hexString4 = target4.ToString("X4");
             string inventoryString = hexString0 + "0000"+ hexString1 + "0000" + hexString2 + "0000" + hexString3 + "0000" + hexString4 + "0000";                               
             return inventoryString;
+        }
+
+        static string QuirkFix(string response)
+        {
+            string quirkString = response;
+            if (response.Length % 2 == 0)
+            {
+                quirkString = "";
+                for (int i = 0; i < (response.Length / 2); i++)
+                {
+                    string byteString = response.Substring(i * 2, 2);
+                    if (byteString == "10")
+                    {
+                        quirkString = quirkString + byteString;
+                    }
+                    quirkString = quirkString + byteString;
+                }
+            }
+            return quirkString;
         }
 
         public static string ByteArrayToString(byte[] ba)
