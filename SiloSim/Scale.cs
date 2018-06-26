@@ -16,7 +16,6 @@ namespace SiloSim
     {
         public static string scaleData = "";
         public static volatile int scaleWeight = 24000;
-        public static int fillIncrement = 20;
         public static int tareWeight = 24000;
         public static int grossWeight = 80000;
         public static int netWeight = 56000;
@@ -91,10 +90,10 @@ namespace SiloSim
                     motion = "MO";
                 }
                 scaleData = string.Format("\r{0,7} LB G {1,2} {2,2}\r", scaleWeight.ToString("D2") , scaleZero, motion);
-                client.SendTimeout = 50;
-                client.SendBufferSize = 17;
+                //client.SendTimeout = 50;
+                client.SendBufferSize = 20;
                 NetworkStream stream = client.GetStream();
-                stream.WriteTimeout = 50;
+                //stream.WriteTimeout = 50;
                 StreamWriter writer = new StreamWriter(stream, Encoding.ASCII) { AutoFlush = false };
                 writer.Write(scaleData);
                 writer.Flush();

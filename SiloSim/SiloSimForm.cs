@@ -382,12 +382,12 @@ namespace SiloSim
 
         private void scaleIncBtn_MouseDown(object sender, MouseEventArgs e)
         {
-            SiloSim.Scale.scaleWeight += SiloSim.Scale.fillIncrement;
+            SiloSim.Scale.scaleWeight += 20;
         }
 
         private void scaleDecBtn_MouseDown(object sender, MouseEventArgs e)
         {
-            SiloSim.Scale.scaleWeight -= SiloSim.Scale.fillIncrement;
+            SiloSim.Scale.scaleWeight -= 20;
         }
 
         private void fillDeselectRb_CheckedChanged(object sender, EventArgs e)
@@ -670,14 +670,6 @@ namespace SiloSim
             {
                 PLC.inputs[13] = false;
                 lblInput14.Text = "";
-            }
-        }
-
-        private void loadoutRateBox_TextChanged(object sender, EventArgs e)
-        {
-            if (validateRate(loadoutRateBox.Text))
-            {
-                SiloSim.Scale.fillIncrement = int.Parse(loadoutRateBox.Text) / 100;
             }
         }
 
@@ -1072,6 +1064,12 @@ namespace SiloSim
             PLC.outputs[13] = false;
         }
 
-
+        private void inAirBox_TextChanged(object sender, EventArgs e)
+        {
+            if (validateRate(inAirBox.Text))
+            {
+                SiloSim.Core.inAirWeight = int.Parse(inAirBox.Text);
+            }
+        }
     }
 }

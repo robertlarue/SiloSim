@@ -77,9 +77,9 @@
             this.output0 = new System.Windows.Forms.GroupBox();
             this.outputLight0 = new System.Windows.Forms.Panel();
             this.inputsBox = new System.Windows.Forms.GroupBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.loadoutRateBox = new System.Windows.Forms.TextBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.inAirBox = new System.Windows.Forms.TextBox();
             this.input24 = new System.Windows.Forms.GroupBox();
             this.inputLight24 = new System.Windows.Forms.Panel();
             this.label48 = new System.Windows.Forms.Label();
@@ -177,7 +177,6 @@
             this.scaleGrossBtn = new System.Windows.Forms.Button();
             this.scaleTareBtn = new System.Windows.Forms.Button();
             this.scalePanel = new System.Windows.Forms.Panel();
-            this.scaleText = new SiloSim.DisabledRichTextBox();
             this.loadoutBox = new System.Windows.Forms.GroupBox();
             this.label39 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
@@ -233,6 +232,7 @@
             this.scaleClientLight = new System.Windows.Forms.Panel();
             this.plcClientLight = new System.Windows.Forms.Panel();
             this.clientsList = new System.Windows.Forms.ToolTip(this.components);
+            this.scaleText = new SiloSim.DisabledRichTextBox();
             this.outputsBox.SuspendLayout();
             this.output13.SuspendLayout();
             this.output12.SuspendLayout();
@@ -827,9 +827,9 @@
             // 
             // inputsBox
             // 
-            this.inputsBox.Controls.Add(this.label43);
-            this.inputsBox.Controls.Add(this.label59);
-            this.inputsBox.Controls.Add(this.loadoutRateBox);
+            this.inputsBox.Controls.Add(this.label63);
+            this.inputsBox.Controls.Add(this.label64);
+            this.inputsBox.Controls.Add(this.inAirBox);
             this.inputsBox.Controls.Add(this.input24);
             this.inputsBox.Controls.Add(this.label48);
             this.inputsBox.Controls.Add(this.input25);
@@ -896,36 +896,36 @@
             this.inputsBox.TabStop = false;
             this.inputsBox.Text = "INPUTS";
             // 
-            // label43
+            // label63
             // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(797, 204);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(42, 13);
-            this.label43.TabIndex = 5;
-            this.label43.Text = "lbs/sec";
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Location = new System.Drawing.Point(797, 207);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(20, 13);
+            this.label63.TabIndex = 28;
+            this.label63.Text = "lbs";
             // 
-            // label59
+            // label64
             // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.Location = new System.Drawing.Point(745, 182);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(84, 13);
-            this.label59.TabIndex = 14;
-            this.label59.Text = "Loadout Rate";
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.Location = new System.Drawing.Point(745, 185);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(83, 13);
+            this.label64.TabIndex = 30;
+            this.label64.Text = "In Air Amount";
             // 
-            // loadoutRateBox
+            // inAirBox
             // 
-            this.loadoutRateBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadoutRateBox.Location = new System.Drawing.Point(742, 201);
-            this.loadoutRateBox.Name = "loadoutRateBox";
-            this.loadoutRateBox.Size = new System.Drawing.Size(49, 20);
-            this.loadoutRateBox.TabIndex = 5;
-            this.loadoutRateBox.Text = "2000";
-            this.loadoutRateBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.loadoutRateBox.TextChanged += new System.EventHandler(this.loadoutRateBox_TextChanged);
+            this.inAirBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inAirBox.Location = new System.Drawing.Point(742, 204);
+            this.inAirBox.Name = "inAirBox";
+            this.inAirBox.Size = new System.Drawing.Size(49, 20);
+            this.inAirBox.TabIndex = 29;
+            this.inAirBox.Text = "2000";
+            this.inAirBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.inAirBox.TextChanged += new System.EventHandler(this.inAirBox_TextChanged);
             // 
             // input24
             // 
@@ -1952,19 +1952,6 @@
             this.scalePanel.Size = new System.Drawing.Size(200, 44);
             this.scalePanel.TabIndex = 1;
             // 
-            // scaleText
-            // 
-            this.scaleText.BackColor = System.Drawing.Color.Black;
-            this.scaleText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.scaleText.Font = new System.Drawing.Font("Lucida Console", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scaleText.ForeColor = System.Drawing.Color.Chartreuse;
-            this.scaleText.Location = new System.Drawing.Point(2, 6);
-            this.scaleText.Name = "scaleText";
-            this.scaleText.Size = new System.Drawing.Size(195, 35);
-            this.scaleText.TabIndex = 0;
-            this.scaleText.TabStop = false;
-            this.scaleText.Text = "   24000";
-            // 
             // loadoutBox
             // 
             this.loadoutBox.Controls.Add(this.label39);
@@ -2593,6 +2580,19 @@
             this.plcClientLight.TabIndex = 10;
             this.plcClientLight.MouseEnter += new System.EventHandler(this.plcClientLight_MouseEnter);
             // 
+            // scaleText
+            // 
+            this.scaleText.BackColor = System.Drawing.Color.Black;
+            this.scaleText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.scaleText.Font = new System.Drawing.Font("Lucida Console", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scaleText.ForeColor = System.Drawing.Color.Chartreuse;
+            this.scaleText.Location = new System.Drawing.Point(2, 6);
+            this.scaleText.Name = "scaleText";
+            this.scaleText.Size = new System.Drawing.Size(195, 35);
+            this.scaleText.TabIndex = 0;
+            this.scaleText.TabStop = false;
+            this.scaleText.Text = "   24000";
+            // 
             // SiloSimForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2872,9 +2872,6 @@
         private System.Windows.Forms.TextBox binInv3;
         private System.Windows.Forms.TextBox binInv2;
         private System.Windows.Forms.TextBox binInv1;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.TextBox loadoutRateBox;
         private System.Windows.Forms.TextBox scalePortBox;
         private System.Windows.Forms.TextBox plcPortBox;
         private System.Windows.Forms.Label label60;
@@ -2890,5 +2887,8 @@
         private System.Windows.Forms.CheckBox silo5LowCb;
         private System.Windows.Forms.CheckBox silo4LowCb;
         private System.Windows.Forms.CheckBox silo3LowCb;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.TextBox inAirBox;
     }
 }

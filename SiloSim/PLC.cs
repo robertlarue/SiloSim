@@ -144,7 +144,7 @@ namespace SiloSim
 
                                             //read outputs
                                             //14 07 89 03 00
-                                            //14 bytes, file number = 7, type = integer(89), element = 5, subelement = 0
+                                            //14 bytes, file number = 7, type = integer(89), element = 3, subelement = 0
                                             case "0407890300":
                                                 string outputString = ConvertOutputsToHex();
                                                 SendResponse(client, sts + tns + outputString, dataPayload: dataPayload);
@@ -190,7 +190,7 @@ namespace SiloSim
                                                 SendResponse(client, sts + tns + "");
                                                 break;
 
-                                            //integer write (set outputs)
+                                            //integer write (set bin inventory)
                                             //02 07 89 06 00
                                             //2 bytes, file number = 7, type = integer(89), element = 5, subelement = 0
                                             case "0207890500":
