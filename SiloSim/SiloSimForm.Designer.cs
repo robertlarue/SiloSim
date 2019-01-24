@@ -1133,6 +1133,7 @@
             this.inputLight18.Name = "inputLight18";
             this.inputLight18.Size = new System.Drawing.Size(30, 30);
             this.inputLight18.TabIndex = 1;
+            this.inputLight18.Click += new System.EventHandler(this.inputLight18_Click);
             // 
             // label51
             // 
@@ -1164,6 +1165,7 @@
             this.inputLight19.Name = "inputLight19";
             this.inputLight19.Size = new System.Drawing.Size(30, 30);
             this.inputLight19.TabIndex = 1;
+            this.inputLight19.Click += new System.EventHandler(this.inputLight19_Click);
             // 
             // label46
             // 
@@ -1205,6 +1207,7 @@
             this.inputLight16.Name = "inputLight16";
             this.inputLight16.Size = new System.Drawing.Size(30, 30);
             this.inputLight16.TabIndex = 1;
+            this.inputLight16.Click += new System.EventHandler(this.inputLight16_Click);
             // 
             // label47
             // 
@@ -1236,6 +1239,7 @@
             this.inputLight14.Name = "inputLight14";
             this.inputLight14.Size = new System.Drawing.Size(30, 30);
             this.inputLight14.TabIndex = 1;
+            this.inputLight14.Click += new System.EventHandler(this.inputLight14_Click);
             // 
             // input17
             // 
@@ -1257,6 +1261,7 @@
             this.inputLight17.Name = "inputLight17";
             this.inputLight17.Size = new System.Drawing.Size(30, 30);
             this.inputLight17.TabIndex = 1;
+            this.inputLight17.Click += new System.EventHandler(this.inputLight17_Click);
             // 
             // lblInput14
             // 
@@ -1288,6 +1293,7 @@
             this.inputLight15.Name = "inputLight15";
             this.inputLight15.Size = new System.Drawing.Size(30, 30);
             this.inputLight15.TabIndex = 1;
+            this.inputLight15.Click += new System.EventHandler(this.inputLight15_Click);
             // 
             // label28
             // 
@@ -1463,6 +1469,7 @@
             this.inputLight8.Name = "inputLight8";
             this.inputLight8.Size = new System.Drawing.Size(30, 30);
             this.inputLight8.TabIndex = 1;
+            this.inputLight8.Click += new System.EventHandler(this.inputLight8_Click);
             // 
             // label31
             // 
@@ -1494,6 +1501,7 @@
             this.inputLight6.Name = "inputLight6";
             this.inputLight6.Size = new System.Drawing.Size(30, 30);
             this.inputLight6.TabIndex = 1;
+            this.inputLight6.Click += new System.EventHandler(this.inputLight6_Click);
             // 
             // input9
             // 
@@ -1547,6 +1555,7 @@
             this.inputLight7.Name = "inputLight7";
             this.inputLight7.Size = new System.Drawing.Size(30, 30);
             this.inputLight7.TabIndex = 1;
+            this.inputLight7.Click += new System.EventHandler(this.inputLight7_Click);
             // 
             // label20
             // 
@@ -1628,6 +1637,7 @@
             this.inputLight4.Name = "inputLight4";
             this.inputLight4.Size = new System.Drawing.Size(30, 30);
             this.inputLight4.TabIndex = 1;
+            this.inputLight4.Click += new System.EventHandler(this.inputLight4_Click);
             // 
             // label23
             // 
@@ -1681,6 +1691,7 @@
             this.inputLight5.Name = "inputLight5";
             this.inputLight5.Size = new System.Drawing.Size(30, 30);
             this.inputLight5.TabIndex = 1;
+            this.inputLight5.Click += new System.EventHandler(this.inputLight5_Click);
             // 
             // label19
             // 

@@ -23,6 +23,7 @@ namespace SiloSim
         delegate void SetScaleMotionCallback(bool scaleInMotion);
         delegate void SetClientLightsCallback(bool scaleClientsConnected, bool plcClientsConnected);
         delegate void SoundHornCallback();
+        delegate void StartWeighBridgeCallback(int tonsPerHour);
 
         private static int fillRate = 300;
         public static string label = "Silo Loadout Simulator";
@@ -95,7 +96,31 @@ namespace SiloSim
                 ConvertBitToColor(ref this.inputLight23, inputs[23]);
                 ConvertBitToColor(ref this.inputLight24, inputs[24]);
                 ConvertBitToColor(ref this.inputLight25, inputs[25]);
-
+                silo1LoadRb.Checked = inputs[4];
+                silo2LoadRb.Checked = inputs[5];
+                silo3LoadRb.Checked = inputs[6];
+                silo4LoadRb.Checked = inputs[7];
+                silo5LoadRb.Checked = inputs[8];
+                if(!inputs[4] && !inputs[5] && !inputs[6] && !inputs[7] && !inputs[8])
+                {
+                    loadDeselectRb.Checked = true;
+                }
+                if (inputs[13])
+                {
+                    silo1FillRb.Checked = inputs[15];
+                    silo2FillRb.Checked = inputs[16];
+                    silo3FillRb.Checked = inputs[17];
+                    silo4FillRb.Checked = inputs[18];
+                    silo5FillRb.Checked = inputs[19];
+                    if (!inputs[15] && !inputs[16] && !inputs[17] && !inputs[18] && !inputs[19])
+                    {
+                        fillDeselectRb.Checked = true;
+                    }
+                }
+                else
+                {
+                    fillDeselectRb.Checked = true;
+                }
             }
         }
 
@@ -516,21 +541,57 @@ namespace SiloSim
             PLC.inputs[8] = false;
         }
 
+        private bool _weighbridgeRunning = false;
         private void fillControlBtn_Click(object sender, EventArgs e)
         {
-            if (fillControlBtn.Text == "Start Filling")
+            if (!_weighbridgeRunning)
             {
+                StartWeighBridge(fillRate);
+            }
+            else
+            {
+                StopWeighBridge();
+            }
+        }
+
+        public void StartWeighBridge(int tonsPerHour)
+        {
+            if (this.weighbridgeBox.InvokeRequired)
+            {
+                StartWeighBridgeCallback d = new StartWeighBridgeCallback(StartWeighBridge);
+                try
+                {
+                    this.Invoke(d, new object[] { tonsPerHour });
+                }
+                catch
+                {
+                    Application.Exit();
+                }
+            }
+            else
+            {
+                if (tonsPerHour > 0)
+                {
+                    fillRate = tonsPerHour;
+                }
+                fillRateBox.Text = fillRate.ToString();
                 fillControlBtn.Text = "Stop Filling";
                 fillRateBox.Enabled = false;
                 weighbridge = new Thread(WeighBridgeThread);
                 weighbridge.Start();
+                _weighbridgeRunning = true;
             }
-            else
+        }
+
+        private void StopWeighBridge()
+        {
+            if (weighbridge != null)
             {
                 weighbridge.Abort();
-                fillControlBtn.Text = "Start Filling";
-                fillRateBox.Enabled = true;
             }
+            fillControlBtn.Text = "Start Filling";
+            fillRateBox.Enabled = true;
+            _weighbridgeRunning = false;
         }
 
         private void binInv1_TextChanged(object sender, EventArgs e)
@@ -1069,6 +1130,193 @@ namespace SiloSim
             if (validateRate(inAirBox.Text))
             {
                 SiloSim.Core.inAirWeight = int.Parse(inAirBox.Text);
+            }
+        }
+
+        private void inputLight4_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[4] == true)
+            {
+                PLC.inputs[4] = false;
+                loadDeselectRb.Checked = true;
+            }
+            else
+            {
+                PLC.inputs[4] = true;
+                silo1LoadRb.Checked = true;
+            }
+        }
+
+        private void inputLight5_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[5] == true)
+            {
+                PLC.inputs[5] = false;
+                loadDeselectRb.Checked = true;
+            }
+            else
+            {
+                PLC.inputs[5] = true;
+                silo2LoadRb.Checked = true;
+            }
+        }
+
+        private void inputLight6_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[6] == true)
+            {
+                PLC.inputs[6] = false;
+                loadDeselectRb.Checked = true;
+            }
+            else
+            {
+                PLC.inputs[6] = true;
+                silo3LoadRb.Checked = true;
+            }
+        }
+
+        private void inputLight7_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[7] == true)
+            {
+                PLC.inputs[7] = false;
+                loadDeselectRb.Checked = true;
+            }
+            else
+            {
+                PLC.inputs[7] = true;
+                silo4LoadRb.Checked = true;
+            }
+        }
+
+        private void inputLight8_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[8] == true)
+            {
+                PLC.inputs[8] = false;
+                loadDeselectRb.Checked = true;
+            }
+            else
+            {
+                PLC.inputs[8] = true;
+                silo5LoadRb.Checked = true;
+            }
+        }
+
+        private void inputLight15_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[13])
+            {
+                if (PLC.inputs[15] == true)
+                {
+                    PLC.inputs[15] = false;
+                    fillDeselectRb.Checked = true;
+                }
+                else
+                {
+                    PLC.inputs[15] = true;
+                    silo1FillRb.Checked = true;
+                }
+            }
+            else
+            {
+                PLC.binInventory[0]++;
+            }
+        }
+
+        private void inputLight16_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[13])
+            {
+                if (PLC.inputs[16] == true)
+                {
+                    PLC.inputs[16] = false;
+                    fillDeselectRb.Checked = true;
+                }
+                else
+                {
+                    PLC.inputs[16] = true;
+                    silo2FillRb.Checked = true;
+                }
+            }
+            else
+            {
+                PLC.binInventory[1]++;
+            }
+        }
+
+        private void inputLight17_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[13])
+            {
+                if (PLC.inputs[17] == true)
+                {
+                    PLC.inputs[17] = false;
+                    fillDeselectRb.Checked = true;
+                }
+                else
+                {
+                    PLC.inputs[17] = true;
+                    silo3FillRb.Checked = true;
+                }
+            }
+            else
+            {
+                PLC.binInventory[2]++;
+            }
+        }
+
+        private void inputLight18_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[13])
+            {
+                if (PLC.inputs[18] == true)
+                {
+                    PLC.inputs[18] = false;
+                    fillDeselectRb.Checked = true;
+                }
+                else
+                {
+                    PLC.inputs[18] = true;
+                    silo4FillRb.Checked = true;
+                }
+            }
+            else
+            {
+                PLC.binInventory[3]++;
+            }
+        }
+
+        private void inputLight19_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[13])
+            {
+                if (PLC.inputs[19] == true)
+                {
+                    PLC.inputs[19] = false;
+                    fillDeselectRb.Checked = true;
+                }
+                else
+                {
+                    PLC.inputs[19] = true;
+                    silo5FillRb.Checked = true;
+                }
+            }
+            else
+            {
+                PLC.binInventory[4]++;
+            }
+        }
+
+        private void inputLight14_Click(object sender, EventArgs e)
+        {
+            if (PLC.inputs[13])
+            {
+                PLC.binInventory[0] = PLC.binInventory[0] + Convert.ToInt32(PLC.inputs[15]);
+                PLC.binInventory[1] = PLC.binInventory[1] + Convert.ToInt32(PLC.inputs[16]);
+                PLC.binInventory[2] = PLC.binInventory[2] + Convert.ToInt32(PLC.inputs[17]);
+                PLC.binInventory[3] = PLC.binInventory[3] + Convert.ToInt32(PLC.inputs[18]);
+                PLC.binInventory[4] = PLC.binInventory[4] + Convert.ToInt32(PLC.inputs[19]);
             }
         }
     }
