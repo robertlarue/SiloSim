@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/robertlarue/SiloSim/_apis/build/status/SiloSim-.NET%20Desktop-CI?branchName=master)](https://dev.azure.com/robertlarue/SiloSim/_build/latest?definitionId=1&branchName=master)
+
 # SiloSim
 Simulates a PLC and a truck scale representing a single asphalt loadout lane with up to five silos. Specifically, it emulates an Allen Bradley Micrologix 1100 PLC loaded with Command Alkon's JWS Apex Loadout program and a Cardinal Scales weigh indicator. 
 ![SiloSim Screenshot](/SiloSim.png?raw=true)
@@ -17,13 +19,17 @@ From the Apex menu, navigate to **System Administrator > System Setup > Devices/
 From the Apex menu, navigate to **System Administrator > System Setup > Devices/Scales > Scales** and open the **Scales** configuration application. Add a new scale with the PLC numbering scheme. PLC scales start at **10201** for the first PLC and continue with **10202**, **10203**, etc. Use the default settings on the **General** page, then go to the **Interface** page, and set the **Scale Type** to **None**. Set the **Interface Method** to **Ethernet TCP/IP**. Make note of the IP address of the machine where SiloSim is installed, and put the IP address into the **Address** field. Then for the **Port**, type the port that SiloSim is using for the PLC. The default PLC port for SiloSim is **11001**, but this can be reconfigured later.
 
 ### C.	Shortcut Setup
-Creating a shortcut to SiloSim allows you to automatically load the port settings and assign a label to SiloSim. This is especially useful if you plan on running more than one SiloSim at a time to simulate multiple loadout lanes. First, navigate to the folder where SiloSim.exe is located. Right-click on the executable and select Send to>Desktop (create shorcut). Then go to the Desktop and right-click on the newly created shortcut and select Properties. In the properties window, in the Shortcut tab, select the text in the Target field. At the end of the Target, you can add the port number for the Scale and the port number for the PLC in addition to the label. The format is as follows:
+Creating a shortcut to SiloSim allows you to automatically load the port settings, assign a label to SiloSim, and setup the startup silos and fill rate. This is especially useful if you plan on running more than one SiloSim at a time to simulate multiple loadout lanes. First, navigate to the folder where SiloSim.exe is located. Right-click on the executable and select Send to>Desktop (create shorcut). Then go to the Desktop and right-click on the newly created shortcut and select Properties. In the properties window, in the Shortcut tab, select the text in the Target field. At the end of the Target, you can add the port number for the Scale and the port number for the PLC in addition to the label. The format is as follows:
 
-`C:\JWS\SiloSim\SiloSim.exe <ScalePort> <PLCport> <Label>`
+`C:\JWS\SiloSim\SiloSim.exe <ScalePort> <PLCport> <Label> <LoadoutSilo> <FillSilo> <FillRate>`
 
 An Example for Lane 2 where the scale uses port 10002 and the PLC uses port 11002 would be:
 
-`C:\JWS\SiloSim\SiloSim.exe 10002 11002 “Lane 2 Sim”`
+`C:\JWS\SiloSim\SiloSim.exe 10002 11002 "Lane 2 Sim"`
+
+An Example for Lane 1 where the scale uses port 10001 and the PLC uses port 11001 with Silo 1 pre-selected for loadout and Silo 2 pre-selected for filling with a rate of 400 tons per hour would be:
+
+`C:\JWS\SiloSim\SiloSim.exe 10002 11002 "Lane 1" 1 2 400`
 
 ## II.	Main Controls
 
