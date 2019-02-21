@@ -39,7 +39,13 @@ This text box enables you to set the label in the title bar for the simulator
 ### B.	Stop/Start Simulation
 This button starts and stops the simulation server. In order to change the port that the PLC or Scale is listening on, you must stop the simulation first.
 
-### C.	Inventory Controls
+### C. Outputs
+Click any of the output lights to momentarily activate the output. Click and hold to keep the output active. When the silo gates are activated, the weight on the scale will begin increasing. There is a delay in between when the output is activated and when the weight is seen on the scale just like in a real plant. There is also a delay between when an output is deactivated and when the weight on the scale stops increasing. This delay is determined by the **In Air Amount**. Clicking on Output 11 for the Truck Horn will sound the horn, and if the **Horn Resets Scale** checkbox is checked, the scale will be reset to the tare weight.
+
+### D. Inputs
+Click the input lights to toggle the input on or off. Only inputs for filling or loadout can be toggled. The **Loadout Rate** text box is for configuring the maximum amount loadout rate in lbs / sec.
+
+### E.	Inventory Controls
 
 #### 1.	Filling Controls
 
@@ -47,7 +53,7 @@ This button starts and stops the simulation server. In order to change the port 
 Each silo has a text box that shows the current unsynced bin inventory. This number can be set manually by typing in a number and pressing enter.
 
 ##### b)	Fill Select
-These radio buttons allow you to choose which of the five silos to currently fill. You can only fill one at a time just like in a real plant. Click on Fill Deselect to deselect all silos for filling.
+These radio buttons allow you to choose which of the five silos to currently fill. You can only fill one at a time just like in a real plant. Click on **Fill Deselect** to deselect all silos for filling.
 
 ##### c)	Low Bin
 Each bin has a checkbox to indicate a low bin level. In a real plant this would come from a sensor, but in the simulator, this is a manual control.
@@ -55,7 +61,7 @@ Each bin has a checkbox to indicate a low bin level. In a real plant this would 
 #### 2.	Loadout Controls
 
 ##### a)	Loadout Select
-These radio buttons allow you to choose which silo is currently selected for loadout. Only one at a time can be selected for loadout. Click on Loadout Deselect to deselect all silos for loadout.
+These radio buttons allow you to choose which silo is currently selected for loadout. Only one at a time can be selected for loadout. Click on **Loadout Deselect** to deselect all silos for loadout.
 
 #### 3.	Weighbridge Controls
 
@@ -66,7 +72,7 @@ This text box allows you to enter the fill rate for filling the silos.
 Click this button to start or stop filling the silos. You should see the silo inventory increase as the weighbridge sends pulses to the silo that is selected for filling.
 
 ##### c)	Common Pulse/One Per Silo
-These radio buttons allow you to choose between two different filling methods. Input number 13 indicates which mode is currently selected. The Common Pulse method will set Input 13 to be always on, the One Per Silo method will set it to be always off. 
+These radio buttons allow you to choose between two different filling methods. Input number 13 indicates which mode is currently selected. The **Common Pulse** method will set Input 13 to be always on, the **One Per Silo** method will set it to be always off. 
 
 In Common Pulse mode, as the weighbridge fills the silos, the Tons Pulse will be visible on Input 14, and the silo is selected with Inputs 15,16,17,18,19.
 
@@ -84,7 +90,7 @@ This button will decrement the weight on the scale by 20 lbs.
 This button will set the scale weight to zero.
 
 ##### d)	Tare Weight
-This text box allows you to set the tare weight of an imaginary truck on the scale. To set the scale to the tare weight in the box, click the TARE button.
+This text box allows you to set the tare weight of an imaginary truck on the scale. To set the scale to the tare weight in the box, click the TARE button. If the **Horn Resets Scale** checkbox is checked, when Output 11 for the horn sounds, the scale will reset to the tare weight.
 
 ##### e)	Gross Weight
 This text box allows you to set the gross weight of an imaginary truck on the scale. To set the scale to the gross weight in the box, click the GROSS button.

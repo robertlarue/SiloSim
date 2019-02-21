@@ -20,7 +20,7 @@ namespace SiloSim
         public static int weighBridgeStartupFillRate = 300;
         public static int inAirWeight = 2000;
         public static float materialInAir = 0F;
-        public static int loadoutRate = 5000;
+        public static float loadoutRate = 5000;
         public static float materialVelocity = 0.1F;
         public static float frictionFactor = 0.5F;
         public static float distanceToTruck = 8F;
@@ -156,7 +156,7 @@ namespace SiloSim
             {
                 if (gatePercentOpen < 100)
                 {
-                    gatePercentOpen += 4;
+                    gatePercentOpen += 1;
                 }
                 else
                 {
@@ -167,7 +167,7 @@ namespace SiloSim
             {
                 if (gatePercentOpen > 0)
                 {
-                    gatePercentOpen -= 4;
+                    gatePercentOpen -= 2;
                 }
                 else
                 {
@@ -175,19 +175,22 @@ namespace SiloSim
                 }
             }
 
-            if(materialInAir > inAirWeight)
+            if (materialInAirQueue.Count > 0)
             {
-                materialInAir = inAirWeight;
+                materialInAir = materialInAirQueue.ToList().Sum();
             }
 
 
             if (materialStreamHeight > 0)
             {
-                if (materialInAir < inAirWeight)
+                if (gatePercentOpen > 0 || materialInAir > 0)
                 {
-                    materialVelocity += gravity / 100;
+                    if (materialInAir <= inAirWeight)
+                    {
+                        materialVelocity += gravity / 100;
+                    }
+                    materialStreamHeight -= materialVelocity / 100;
                 }
-                materialStreamHeight -= materialVelocity / 100;
             }
             else
             {
@@ -196,27 +199,39 @@ namespace SiloSim
 
             if (gatePercentOpen > 0)
             {
-                var material = gatePercentOpen / 100 * materialVelocity * siloOpeningArea * materialDensity / 100;
+                loadoutRate = gatePercentOpen / 100 * materialVelocity * siloOpeningArea * materialDensity;
+                if(loadoutRate > inAirWeight)
+                {
+                    loadoutRate = inAirWeight;
+                }
+                var material = loadoutRate / 100;
                 materialInAirQueue.Enqueue(material);
-                materialInAir += gatePercentOpen / 100 * materialVelocity * siloOpeningArea * materialDensity / 100;
             }
 
+            float materialLandedInTruck = 0;
             if (materialStreamHeight <= 0 && materialInAir > 0)
             {
-                var materialLandedInTruck = materialInAirQueue.Dequeue();
-                materialInAir -= materialLandedInTruck;
-                Scale.scaleWeight += (int)Math.Round(materialLandedInTruck);
+                if (materialInAirQueue.Count > 0)
+                {
+                    materialLandedInTruck = materialInAirQueue.Dequeue();
+                    Scale.scaleWeight += (int)Math.Round(materialLandedInTruck);
+                }
+                else
+                {
+                    materialInAir = 0;
+                }
             }
 
             if(gatePercentOpen > 0 || materialInAir > 0)
             {
-                Debug.WriteLine("materialVelocity={0},materialInAir={1},materialStreamHeight={2},loadoutRate={3},gatePercentOpen={4}", materialVelocity, materialInAir, materialStreamHeight,materialVelocity*siloOpeningArea*materialDensity,gatePercentOpen);
+                Debug.WriteLine($"time={DateTime.Now.TimeOfDay},scaleWeight={Scale.scaleWeight},materialLandedInTruck ={materialLandedInTruck},materialVelocity={materialVelocity},materialInAir={materialInAir},materialStreamHeight={materialStreamHeight},loadoutRate={loadoutRate},gatePercentOpen={gatePercentOpen}");
             }
             else
             {
                 materialInAir = 0;
-                materialVelocity = 0.1F;
+                materialVelocity = 0.0F;
                 materialStreamHeight = distanceToTruck;
+                materialInAirQueue.Clear();
             }
 
             if (hornResetEnabled)
